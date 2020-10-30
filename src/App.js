@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="instagram">
       <Navbar/>
-      <Post alifallah='hiali' />
+      <Post alifallah='hahai' />
     </div>
 
   );
