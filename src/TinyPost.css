@@ -1,0 +1,30 @@
+.post-card {
+    margin:1px;
+    background-color: #000;
+    position: relative;
+}
+
+
+.post-card img{
+    width:100%;
+    opacity: 50%;
+    transform: scale(110%);
+    transition: all 300ms ease-in-out;
+}
+
+.post-card img:hover{
+    opacity: 100%;
+}
+
+.caption{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+    transition: all 300ms ease-in-out;
+}
+
+.post-card img:hover ~ .caption{
+    opacity:0%;
+}

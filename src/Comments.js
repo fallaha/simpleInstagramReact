@@ -11,7 +11,7 @@ class Comments extends React.Component{
         return (
         <div className="post-detail-content-comment">
             <div className="post-detail-content-comment-header">
-            <img className="profileimage" src={Faker.internet.avatar()}/>
+            <img className="profileimage" src={Faker.internet.avatar()} alt="avatar" />
             <div className="Post-detail-text">
                 {Faker.internet.userName()}{' '}
                 <span>{this.props.comment == null ? Faker.lorem.sentence() : this.props.comment}</span>
