@@ -3,16 +3,12 @@ import Faker from 'faker';
 import { render } from 'react-dom';
 import Timelast from './Timelast';
 import Comments from './Comments';
+import {connect} from 'react-redux';
+import {addComment} from './actions/index'
 
 class Post extends React.Component{
     constructor(props){
         super(props);
-        this.avatarimgsrc = Faker.internet.avatar();
-        this.username = Faker.internet.userName();
-        this.textPost = Faker.lorem.sentences();
-        this.state = {
-            commnets: [<Comments key="0" />]
-        };
     }
 
 
@@ -21,12 +17,7 @@ class Post extends React.Component{
             alert("Write a Comment before Send it :/");
             return;
         }
-
-        this.state.commnets.push(<Comments key={this.state.commnets.length} comment={document.getElementById("myCommentText").value} />)
-        this.setState(
-            {
-                commnets:this.state.commnets ,
-            });
+        this.props.addComment(document.getElementById("myCommentText").value);
     }
     render(){
         return (
@@ -36,9 +27,9 @@ class Post extends React.Component{
             </div>
             <div className="Post-detail">
             <div className="Post-detail-head">
-                <img className="profileimage" alt="postimage" src={this.avatarimgsrc}/>
+                <img className="profileimage" alt="postimage" src={this.props.post.user.avatar}/>
                 <div className="Post-detail-head-username">
-                    {this.username}
+                    {this.props.post.user.username}
                     <span style={{marginLeft:'6px'}}>•</span>
                     <a href="#"><span style={{marginLeft:'6px'}}>Following</span></a>
                 </div>
@@ -46,15 +37,20 @@ class Post extends React.Component{
             </div>
             <div className="Post-detail-content">
                 <div className="Post-detail-content-usertext">
-                <img className="profileimage" alt="postimage" src={this.avatarimgsrc}/>
+                <img className="profileimage" alt="postimage" src={this.props.post.user.avatar}/>
                 <div className="Post-detail-text">
-                    {this.username}{' '}
-                    <span>{this.textPost}</span>
+                    {this.props.post.user.username}{' '}
+                    <span>{this.props.post.caption}</span>
                     <p className="timelasted">3h</p>
                 </div>
                 </div>
                 <div className="post-detail-content-comments">
-                    {this.state.commnets}
+                    {/* {this.state.commnets} */}
+                    {
+                    this.props.post.comments.map(comment => {
+                        return(<Comments key={comment.text.length} commentobj={comment} />);
+                    } )
+                    }
                 </div>
             </div>
             <div className="Post-detail-footer">
@@ -89,4 +85,10 @@ class Post extends React.Component{
     }
 }
 
-export default Post;
+const mapStateToProps = (state) => {
+    return {
+        post : state.post,
+    }
+}
+
+export default connect(mapStateToProps,{addComment})(Post);

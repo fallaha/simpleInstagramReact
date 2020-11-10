@@ -1,5 +1,7 @@
 import React from 'react'; 
 import LogoImage from './logo.png'
+import {applySearch,setSearchPage} from "./actions/index"
+import {connect} from "react-redux";
 
 class Navbar extends React.Component {
 
@@ -12,7 +14,8 @@ class Navbar extends React.Component {
 
     checkForKey = (event) => {
         if (event.keyCode == 13){
-            this.props.onSearchFormSubmit(this.state.term);
+            this.props.applySearch(this.state.term);
+            this.props.setSearchPage();
         }
         return null;
     }
@@ -48,4 +51,4 @@ class Navbar extends React.Component {
 }
 
 
-export default Navbar;
+export default connect(null,{applySearch,setSearchPage})(Navbar);
