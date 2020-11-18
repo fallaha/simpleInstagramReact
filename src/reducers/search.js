@@ -1,20 +1,12 @@
-
-let initializeState = {
-    searchResult : [],
-    searchText: "nothing",
-    searchPage: 0,
-
+let initialzeState = {
+    searchText : "",
 }
 
-
-export default (state=initializeState,action) => {
-    if (action.type === "APPLY_SEARCH"){
-        let newState = {...state};
-        newState.searchResult = action.payload.searchResult;
-        newState.searchPage++;
-        newState.searchText = action.payload.searchText;
-        console.log("new State here: ",action.payload.searchText)
-        return newState;
+export default (state=initialzeState, action) => {
+    if (action.type === "SET_SEARCH_TEXT"){
+        let newState = {...state}
+        newState.searchText = action.payload.text
+        return newState
     }
-    return state;
+    return state
 }

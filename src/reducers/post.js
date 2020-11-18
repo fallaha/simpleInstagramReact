@@ -10,7 +10,7 @@ let initializeState = {
 }
 
 export default (state=initializeState, action) => {
-    if (action.type === "SEND_COMMAND"){
+    if (action.type === "SEND_COMMENT"){
         let newState = {...state};
         let commentText = action.payload.text;
         newState.comments.push({text: commentText, isLiked: false,likeCount: 1,time:Math.round((new Date()).getTime() / 1000) - Math.floor(Math.random()*3600),user:{username: Faker.internet.userName(),avatar: Faker.internet.avatar(),isFollowing: false}});

@@ -5,7 +5,6 @@ let user = {
 
 }
 let initializeState = {
-    currentPage : "singlePage",
     currentUser : user,
 }
 
@@ -13,7 +12,6 @@ let initializeState = {
 export default (state=initializeState, action) => {
     if (action.type === "SET_SEARCH_PAGE"){
         let newState = {...state};
-        newState.currentPage = "searchPage";
         return newState;    
     }
 

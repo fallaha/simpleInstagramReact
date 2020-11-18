@@ -1,6 +1,6 @@
 import main from "./main";
 import post from "./post";
-import search from "./search";
+import search from "./search"
 
 import {combineReducers} from 'redux';
 
